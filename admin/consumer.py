@@ -1,9 +1,9 @@
 import pika, json, os, django
 
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "admin.settings")
-# django.setup()
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "admin.settings")
+django.setup()
 
-# from products.models import Product
+from products.models import Product
 
 params = pika.URLParameters('amqps://coampnoh:Jkt8Grl-PClAF9AwLemu3Jl8CGAnooT8@rattlesnake.rmq.cloudamqp.com/coampnoh')
 
@@ -15,13 +15,13 @@ channel.queue_declare(queue='admin')
 
 
 def callback(ch, method, properties, body):
-    print('Received in main')
-    # id = json.loads(body)
-    # print(id)
-    # product = Product.objects.get(id=id)
-    # product.likes = product.likes + 1
-    # product.save()
-    # print('Product likes increased!')
+    print('Received in admin')
+    id = json.loads(body)
+    print(id)
+    product = Product.objects.get(id=id)
+    product.likes = product.likes + 1
+    product.save()
+    print('Product likes increased!')
     print(body)
 
 
