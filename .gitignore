@@ -1,5 +1,5 @@
 __pycache__/
 env
 .DS_Store
-*.dbdata
-
+admin/.dbdata
+main/.dbdata
